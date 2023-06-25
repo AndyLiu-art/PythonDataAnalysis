@@ -1,0 +1,102 @@
+    \hypertarget{ux4ee5openmlux4e2dux7684ux6570ux636eux96c61studentperformanceux4e3aux4f8bux5c06ux6570ux636eux96c6ux62c6ux5206ux6210ux4e24ux4e2aux5b50ux96c6ux53d8ux91cfux62c6ux5206ux6837ux672cux662fux4eceux539fux6570ux636eux96c6ux4e2dux91cdux62bdux6837ux6240ux5f97ux5c06ux8fd9ux4e24ux4e2aux5b50ux96c6ux6309ux5217ux5408ux5e76ux9ed8ux8ba4ux952eux662fux884cux7d22ux5f15index}{%
+\subsubsection{以openml中的数据集1StudentPerformance为例，将数据集拆分成两个子集（变量拆分），样本是从原数据集中重抽样所得，将这两个子集按列合并，默认键是行索引index。}\label{ux4ee5openmlux4e2dux7684ux6570ux636eux96c61studentperformanceux4e3aux4f8bux5c06ux6570ux636eux96c6ux62c6ux5206ux6210ux4e24ux4e2aux5b50ux96c6ux53d8ux91cfux62c6ux5206ux6837ux672cux662fux4eceux539fux6570ux636eux96c6ux4e2dux91cdux62bdux6837ux6240ux5f97ux5c06ux8fd9ux4e24ux4e2aux5b50ux96c6ux6309ux5217ux5408ux5e76ux9ed8ux8ba4ux952eux662fux884cux7d22ux5f15index}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 导入数据集获取工具}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{datasets} \PY{k+kn}{import} \PY{n}{fetch\PYZus{}openml}
+\PY{c+c1}{\PYZsh{} 导入数据分析库}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 获取数据}
+\PY{n}{data} \PY{o}{=} \PY{n}{fetch\PYZus{}openml}\PY{p}{(}
+    \PY{n}{data\PYZus{}id}\PY{o}{=}\PY{l+m+mi}{43255}\PY{p}{,}
+    \PY{n}{as\PYZus{}frame}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+    \PY{n}{parser}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pandas}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{frame}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 查看数据集的前五行}
+\PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+   gender race/ethnicity parental level of education         lunch  \textbackslash{}
+0  female        group B          bachelor\textbackslash{}'s degree      standard
+1  female        group C                some college      standard
+2  female        group B            master\textbackslash{}'s degree      standard
+3    male        group A         associate\textbackslash{}'s degree  free/reduced
+4    male        group C                some college      standard
+
+  test preparation course  math score  reading score  writing score
+0                    none          72             72             74
+1               completed          69             90             88
+2                    none          90             95             93
+3                    none          47             57             44
+4                    none          76             78             75
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 重抽样}
+\PY{n}{data1} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n}{n}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{replace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{data2} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n}{n}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{replace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 按列合并，默认的key是Index，取并集，以缺失值填充}
+\PY{n}{newdata1} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{data1}\PY{p}{,} \PY{n}{data2}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{join}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{outer}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{newdata1}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+     gender race/ethnicity parental level of education         lunch  \textbackslash{}
+37   female        group D            some high school  free/reduced
+235    male        group D         associate\textbackslash{}'s degree      standard
+908  female        group C          bachelor\textbackslash{}'s degree  free/reduced
+72   female        group A         associate\textbackslash{}'s degree  free/reduced
+767    male        group B                 high school      standard
+
+    test preparation course  math score  reading score  writing score
+37                      NaN         NaN            NaN            NaN
+235                     NaN         NaN            NaN            NaN
+908                     NaN         NaN            NaN            NaN
+72                      NaN         NaN            NaN            NaN
+767                     NaN         NaN            NaN            NaN
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 按列合并，默认的key是Index，取交集，无缺失值}
+\PY{n}{newdata2} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{data1}\PY{p}{,} \PY{n}{data2}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{join}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{inner}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{newdata2}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    gender race/ethnicity parental level of education     lunch  \textbackslash{}
+534   male        group B                 high school  standard
+
+    test preparation course  math score  reading score  writing score
+534               completed          73             69             68
+\end{Verbatim}
+\end{tcolorbox}

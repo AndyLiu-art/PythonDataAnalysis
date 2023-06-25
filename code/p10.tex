@@ -1,0 +1,81 @@
+    \hypertarget{ux4ee5openmlux4e2dux7684ux6570ux636eux96c61studentperfromanceux4e3aux4f8bux627eux5230ux4e0bux4e00ux4e2amath-scoreux5206ux6570ux6bd4ux4e0aux4e00ux4e2aux9ad8ux7684ux6837ux672cux503c}{%
+\subsubsection{以openml中的数据集1StudentPerfromance为例，找到下一个math
+score分数比上一个高的样本值。}\label{ux4ee5openmlux4e2dux7684ux6570ux636eux96c61studentperfromanceux4e3aux4f8bux627eux5230ux4e0bux4e00ux4e2amath-scoreux5206ux6570ux6bd4ux4e0aux4e00ux4e2aux9ad8ux7684ux6837ux672cux503c}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 导入数据集获取工具}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{datasets} \PY{k+kn}{import} \PY{n}{fetch\PYZus{}openml}
+\PY{c+c1}{\PYZsh{} 导入数据分析库}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 获取数据}
+\PY{n}{data} \PY{o}{=} \PY{n}{fetch\PYZus{}openml}\PY{p}{(}
+    \PY{n}{data\PYZus{}id}\PY{o}{=}\PY{l+m+mi}{43255}\PY{p}{,}
+    \PY{n}{as\PYZus{}frame}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+    \PY{n}{parser}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pandas}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{frame}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 查看数据集的前五行}
+\PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+   gender race/ethnicity parental level of education         lunch  \textbackslash{}
+0  female        group B          bachelor\textbackslash{}'s degree      standard
+1  female        group C                some college      standard
+2  female        group B            master\textbackslash{}'s degree      standard
+3    male        group A         associate\textbackslash{}'s degree  free/reduced
+4    male        group C                some college      standard
+
+  test preparation course  math score  reading score  writing score
+0                    none          72             72             74
+1               completed          69             90             88
+2                    none          90             95             93
+3                    none          47             57             44
+4                    none          76             78             75
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 一步差分结果}
+\PY{n}{diff\PYZus{}res} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{math score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 从一步差分结果的索引找到这些样本}
+\PY{n}{data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{diff\PYZus{}res}\PY{p}{[}\PY{n}{diff\PYZus{}res} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{,} \PY{p}{]}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+    gender race/ethnicity parental level of education         lunch  \textbackslash{}
+2   female        group B            master\textbackslash{}'s degree      standard
+4     male        group C                some college      standard
+6   female        group B                some college      standard
+8     male        group D                 high school  free/reduced
+10    male        group C         associate\textbackslash{}'s degree      standard
+
+   test preparation course  math score  reading score  writing score
+2                     none          90             95             93
+4                     none          76             78             75
+6                completed          88             95             92
+8                completed          64             64             67
+10                    none          58             54             52
+\end{Verbatim}
+\end{tcolorbox}

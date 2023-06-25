@@ -1,0 +1,92 @@
+    \hypertarget{ux4ee5openmlux4e2dux7684ux6570ux636eux96c61studentperformanceux4e3aux4f8bux65b0ux5efaux4e00ux5217idux8868ux793aux4e0dux540cux5b66ux751fux7684ux7f16ux53f7ux521bux5efaux4e00ux4e2aux77e9ux9635ux77e9ux9635ux7684ux7b2ciux884cux7b2cjux5217ux662fux7b2ciux4e2aux5b66ux751fux7684ux6570ux5b66ux6210ux7ee9math-scoreux51cfux53bbux7b2cjux4e2aux5b66ux751fux7684ux6570ux5b66ux6210ux7ee9ux7684ux7ed3ux679cux4f7fux7528forux5faaux73afux5bf9dataframeux7684ux5143ux7d20ux4e00ux4e2aux4e00ux4e2aux8d4bux503cux8d4bux503cux65b9ux5f0fux4f7fux7528locux548catux5bf9ux6bd4ux65f6ux95f4ux6d88ux8017ux4e3aux4e86ux8282ux7701ux65f6ux95f4ux9650ux52361ij200}{%
+\subsubsection{\texorpdfstring{以openml中的数据集1StudentPerformance为例，新建一列id表示不同学生的编号，创建一个矩阵，矩阵的第\(i\)行第\(j\)列是第\(i\)个学生的数学成绩math
+score减去第\(j\)个学生的数学成绩的结果。使用for循环对dataframe的元素一个一个赋值，赋值方式使用loc和at，对比时间消耗。为了节省时间，限制\(1<=i,j<=200\)。}{以openml中的数据集1StudentPerformance为例，新建一列id表示不同学生的编号，创建一个矩阵，矩阵的第i行第j列是第i个学生的数学成绩math score减去第j个学生的数学成绩的结果。使用for循环对dataframe的元素一个一个赋值，赋值方式使用loc和at，对比时间消耗。为了节省时间，限制1\textless=i,j\textless=200。}}\label{ux4ee5openmlux4e2dux7684ux6570ux636eux96c61studentperformanceux4e3aux4f8bux65b0ux5efaux4e00ux5217idux8868ux793aux4e0dux540cux5b66ux751fux7684ux7f16ux53f7ux521bux5efaux4e00ux4e2aux77e9ux9635ux77e9ux9635ux7684ux7b2ciux884cux7b2cjux5217ux662fux7b2ciux4e2aux5b66ux751fux7684ux6570ux5b66ux6210ux7ee9math-scoreux51cfux53bbux7b2cjux4e2aux5b66ux751fux7684ux6570ux5b66ux6210ux7ee9ux7684ux7ed3ux679cux4f7fux7528forux5faaux73afux5bf9dataframeux7684ux5143ux7d20ux4e00ux4e2aux4e00ux4e2aux8d4bux503cux8d4bux503cux65b9ux5f0fux4f7fux7528locux548catux5bf9ux6bd4ux65f6ux95f4ux6d88ux8017ux4e3aux4e86ux8282ux7701ux65f6ux95f4ux9650ux52361ij200}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 导入数据集获取工具}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{datasets} \PY{k+kn}{import} \PY{n}{fetch\PYZus{}openml}
+\PY{c+c1}{\PYZsh{} 导入数据分析库}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 获取数据}
+\PY{n}{data} \PY{o}{=} \PY{n}{fetch\PYZus{}openml}\PY{p}{(}
+    \PY{n}{data\PYZus{}id}\PY{o}{=}\PY{l+m+mi}{43255}\PY{p}{,}
+    \PY{n}{as\PYZus{}frame}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+    \PY{n}{parser}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pandas}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{frame}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 查看数据集的前五行}
+\PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+   gender race/ethnicity parental level of education         lunch  \textbackslash{}
+0  female        group B          bachelor\textbackslash{}'s degree      standard
+1  female        group C                some college      standard
+2  female        group B            master\textbackslash{}'s degree      standard
+3    male        group A         associate\textbackslash{}'s degree  free/reduced
+4    male        group C                some college      standard
+
+  test preparation course  math score  reading score  writing score
+0                    none          72             72             74
+1               completed          69             90             88
+2                    none          90             95             93
+3                    none          47             57             44
+4                    none          76             78             75
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 新建id列}
+\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ID}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{o}{\PYZpc{}\PYZpc{}time}it
+\PY{c+c1}{\PYZsh{} 新建一个dataframe}
+\PY{n}{resdf1} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{201}\PY{p}{)}\PY{p}{:}
+    \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{201}\PY{p}{)}\PY{p}{:}
+        \PY{n}{resdf1}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ID}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ID}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{j}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{math score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{data}\PY{o}{.}\PY{n}{at}\PY{p}{[}\PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{math score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2.66 s ± 95.1 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{o}{\PYZpc{}\PYZpc{}time}it
+\PY{c+c1}{\PYZsh{} 新建一个dataframe}
+\PY{n}{resdf2} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n}{data}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{id}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{201}\PY{p}{)}\PY{p}{:}
+    \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{201}\PY{p}{)}\PY{p}{:}
+        \PY{n}{resdf2}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ID}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ID}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{j}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{math score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{data}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{math score}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6.97 s ± 270 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+    \end{Verbatim}

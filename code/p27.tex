@@ -1,0 +1,89 @@
+    \hypertarget{ux4ee5openmlux4e2dux7684ux6570ux636eux96c61studentperformanceux4e3aux4f8bux5c06ux6570ux636eux96c6ux968fux673aux5730ux62c6ux5206ux4e3aux4e09ux5757ux518dux4eceux4e09ux4e2aux5b50ux96c6ux4e2dux5206ux522bux8fdbux884cux91cdux62bdux6837ux5c06ux6240ux5f97ux5230ux7684ux7ed3ux679cux6309ux884cux5408ux5e76}{%
+\subsubsection{以openml中的数据集1StudentPerformance为例，将数据集随机地拆分为三块，再从三个子集中分别进行重抽样，将所得到的结果按行合并。}\label{ux4ee5openmlux4e2dux7684ux6570ux636eux96c61studentperformanceux4e3aux4f8bux5c06ux6570ux636eux96c6ux968fux673aux5730ux62c6ux5206ux4e3aux4e09ux5757ux518dux4eceux4e09ux4e2aux5b50ux96c6ux4e2dux5206ux522bux8fdbux884cux91cdux62bdux6837ux5c06ux6240ux5f97ux5230ux7684ux7ed3ux679cux6309ux884cux5408ux5e76}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 导入数据集获取工具}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{datasets} \PY{k+kn}{import} \PY{n}{fetch\PYZus{}openml}
+\PY{c+c1}{\PYZsh{} 导入数据分析库}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 获取数据}
+\PY{n}{data} \PY{o}{=} \PY{n}{fetch\PYZus{}openml}\PY{p}{(}
+    \PY{n}{data\PYZus{}id}\PY{o}{=}\PY{l+m+mi}{43255}\PY{p}{,}
+    \PY{n}{as\PYZus{}frame}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+    \PY{n}{parser}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pandas}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{frame}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 查看数据集的前五行}
+\PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+   gender race/ethnicity parental level of education         lunch  \textbackslash{}
+0  female        group B          bachelor\textbackslash{}'s degree      standard
+1  female        group C                some college      standard
+2  female        group B            master\textbackslash{}'s degree      standard
+3    male        group A         associate\textbackslash{}'s degree  free/reduced
+4    male        group C                some college      standard
+
+  test preparation course  math score  reading score  writing score
+0                    none          72             72             74
+1               completed          69             90             88
+2                    none          90             95             93
+3                    none          47             57             44
+4                    none          76             78             75
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 数据集划分}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k+kn}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+\PY{c+c1}{\PYZsh{} 第一次划分}
+\PY{n}{df\PYZus{}train}\PY{p}{,} \PY{n}{df\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 第二次划分}
+\PY{n}{df\PYZus{}train1}\PY{p}{,} \PY{n}{df\PYZus{}test1} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{df\PYZus{}train}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 重抽样}
+\PY{n}{sample1} \PY{o}{=} \PY{n}{df\PYZus{}train1}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n}{n}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{replace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\PY{n}{sample2} \PY{o}{=} \PY{n}{df\PYZus{}test1}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n}{n}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{replace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\PY{n}{sample3} \PY{o}{=} \PY{n}{df\PYZus{}test}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n}{n}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{replace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 按行合并}
+\PY{n}{newdata} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{sample1}\PY{p}{,} \PY{n}{sample2}\PY{p}{,} \PY{n}{sample3}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\PY{n}{newdata}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+     gender race/ethnicity parental level of education         lunch  \textbackslash{}
+497  female        group D                some college  free/reduced
+384  female        group A            some high school  free/reduced
+487  female        group C         associate\textbackslash{}'s degree  free/reduced
+273  female        group D                some college      standard
+728  female        group D                 high school  free/reduced
+
+    test preparation course  math score  reading score  writing score
+497               completed          59             78             76
+384                    none          38             43             43
+487                    none          60             75             74
+273                    none          65             70             71
+728                    none          73             92             84
+\end{Verbatim}
+\end{tcolorbox}

@@ -1,0 +1,93 @@
+    \hypertarget{ux4ee5openmlux4e2dux7684ux6570ux636eux96c6csmux4e3aux4f8bux5c06ux6570ux636eux96c6ux7684ux90e8ux5206ux5217ux540dux8fdbux884cux4feeux6539}{%
+\subsubsection{以openml中的数据集CSM为例，将数据集的部分列名进行修改。}\label{ux4ee5openmlux4e2dux7684ux6570ux636eux96c6csmux4e3aux4f8bux5c06ux6570ux636eux96c6ux7684ux90e8ux5206ux5217ux540dux8fdbux884cux4feeux6539}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 导入数据集获取工具}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{datasets} \PY{k+kn}{import} \PY{n}{fetch\PYZus{}openml}
+\PY{c+c1}{\PYZsh{} 导入数据分析库}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 获取数据}
+\PY{n}{data} \PY{o}{=} \PY{n}{fetch\PYZus{}openml}\PY{p}{(}
+    \PY{n}{data\PYZus{}id}\PY{o}{=}\PY{l+m+mi}{42371}\PY{p}{,}
+    \PY{n}{as\PYZus{}frame}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+    \PY{n}{parser}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pandas}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{frame}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 查看数据集的前五行}
+\PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+   Year  Ratings  Genre      Gross       Budget  Screens  Sequel  Sentiment  \textbackslash{}
+0  2014      6.3      8       9130    4000000.0     45.0       1          0
+1  2014      7.1      1  192000000   50000000.0   3306.0       2          2
+2  2014      6.2      1   30700000   28000000.0   2872.0       1          0
+3  2014      6.3      1  106000000  110000000.0   3470.0       2          0
+4  2014      4.7      8   17300000    3500000.0   2310.0       2          0
+
+     Views  Likes  Dislikes  Comments  Aggregate.Followers
+0  3280543   4632       425       636            1120000.0
+1   583289   3465        61       186           12350000.0
+2   304861    328        34        47             483000.0
+3   452917   2429       132       590             568000.0
+4  3145573  12163       610      1082            1923800.0
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 列重新命名}
+\PY{n}{data}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{年份}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{评分}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{类型}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{gross}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{预算}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{screens}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{续集}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{感情}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{观看次数}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{喜欢人数}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{不喜欢人数}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{评论数}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{粉丝数}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{]}
+\PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+     年份   评分  类型      gross           预算  screens  续集  感情     观看次数   喜欢人数  \textbackslash{}
+0  2014  6.3   8       9130    4000000.0     45.0   1   0  3280543   4632
+1  2014  7.1   1  192000000   50000000.0   3306.0   2   2   583289   3465
+2  2014  6.2   1   30700000   28000000.0   2872.0   1   0   304861    328
+3  2014  6.3   1  106000000  110000000.0   3470.0   2   0   452917   2429
+4  2014  4.7   8   17300000    3500000.0   2310.0   2   0  3145573  12163
+
+   不喜欢人数   评论数         粉丝数
+0    425   636   1120000.0
+1     61   186  12350000.0
+2     34    47    483000.0
+3    132   590    568000.0
+4    610  1082   1923800.0
+\end{Verbatim}
+\end{tcolorbox}

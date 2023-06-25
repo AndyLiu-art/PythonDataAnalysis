@@ -1,0 +1,79 @@
+    \hypertarget{ux4ee5openmlux4e2dux7684ux6570ux636eux96c6csmux4e3aux4f8bux5c06ux6570ux636eux96c6ux6309ux7167ux8bc4ux5206ratingsux4f5cux4e3aux7b2cux4e00ux56e0ux5b50ux964dux5e8fux6392ux5217likesux4f5cux4e3aux7b2cux4e8cux56e0ux5b50ux5347ux5e8fux6392ux5217}{%
+\subsubsection{以openml中的数据集CSM为例，将数据集按照评分Ratings作为第一因子降序排列，Likes作为第二因子升序排列。}\label{ux4ee5openmlux4e2dux7684ux6570ux636eux96c6csmux4e3aux4f8bux5c06ux6570ux636eux96c6ux6309ux7167ux8bc4ux5206ratingsux4f5cux4e3aux7b2cux4e00ux56e0ux5b50ux964dux5e8fux6392ux5217likesux4f5cux4e3aux7b2cux4e8cux56e0ux5b50ux5347ux5e8fux6392ux5217}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 导入数据集获取工具}
+\PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{datasets} \PY{k+kn}{import} \PY{n}{fetch\PYZus{}openml}
+\PY{c+c1}{\PYZsh{} 导入数据分析库}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 获取数据}
+\PY{n}{data} \PY{o}{=} \PY{n}{fetch\PYZus{}openml}\PY{p}{(}
+    \PY{n}{data\PYZus{}id}\PY{o}{=}\PY{l+m+mi}{42371}\PY{p}{,}
+    \PY{n}{as\PYZus{}frame}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+    \PY{n}{parser}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pandas}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{frame}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 查看数据集的前五行}
+\PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+   Year  Ratings  Genre      Gross       Budget  Screens  Sequel  Sentiment  \textbackslash{}
+0  2014      6.3      8       9130    4000000.0     45.0       1          0
+1  2014      7.1      1  192000000   50000000.0   3306.0       2          2
+2  2014      6.2      1   30700000   28000000.0   2872.0       1          0
+3  2014      6.3      1  106000000  110000000.0   3470.0       2          0
+4  2014      4.7      8   17300000    3500000.0   2310.0       2          0
+
+     Views  Likes  Dislikes  Comments  Aggregate.Followers
+0  3280543   4632       425       636            1120000.0
+1   583289   3465        61       186           12350000.0
+2   304861    328        34        47             483000.0
+3   452917   2429       132       590             568000.0
+4  3145573  12163       610      1082            1923800.0
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 多字段排序，升降序排列}
+\PY{n}{res} \PY{o}{=} \PY{n}{data}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Ratings}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Likes}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{p}{[}\PY{k+kc}{False}\PY{p}{,} \PY{k+kc}{True}\PY{p}{]}\PY{p}{)}
+\PY{n}{res}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+     Year  Ratings  Genre      Gross       Budget  Screens  Sequel  Sentiment  \textbackslash{}
+55   2014      8.7      2  188000000  165000000.0   3561.0       1          2
+166  2015      8.6     12  345000000  175000000.0   3946.0       1          2
+155  2014      8.6      3   13100000    3300000.0     42.0       1          2
+175  2015      8.3      9  135000000   28000000.0   2757.0       1          5
+174  2015      8.3      1  153000000  150000000.0   3702.0       4         -4
+
+       Views  Likes  Dislikes  Comments  Aggregate.Followers
+55   5421705  16635       751      4316            1865000.0
+166  1438926   4632       262       496             232000.0
+155  7750223  17541       631      2760             858000.0
+175   848970  12607       237      1560              55618.0
+174  2732371  13030       497      1774             768700.0
+\end{Verbatim}
+\end{tcolorbox}
