@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2021.2.7)  20 JUN 2023 23:47
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2021.2.7)  26 JUN 2023 13:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1530,31 +1530,34 @@ LaTeX Font Warning: Font shape `TU/KaiTi(0)/m/sl' undefined
 (./code/p43.tex [47]) (./code/p44.tex [48]) (./code/p45.tex [49])
 (./code/p46.tex [50]) (./code/p47.tex [51]) (./code/p48.tex [52])
 (./code/p49.tex [53]) (./code/p50.tex [54]) (./code/p51.tex [55])
-(./code/p52.tex [56]) (./code/p20.tex
+(./code/p52.tex [56]) (./code/p53.tex [57]) (./code/p54.tex [58])
+(./code/p55.tex [59]) (./code/p56.tex [60] [61]) (./code/p57.tex [62] [63])
+(./code/p58.tex [64]) (./code/p59.tex [65] [66]) (./code/p60.tex [67])
+(./code/p20.tex
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 3.
 
-[57])) [58]
+[68] [69])) [70]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 7.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 7.
  (./main.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 7.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 7.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8CB66587A0AAC9F9B94ED5C8D4073712;24492.
+(rerunfilecheck)             Checksum: E3FFEAC80D691BC65478AA9C85AF2F40;29084.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 34297 strings out of 479418
- 734195 string characters out of 5881066
- 1206817 words of memory out of 5000000
- 50984 multiletter control sequences out of 15000+600000
+ 34409 strings out of 479418
+ 737429 string characters out of 5881066
+ 1212393 words of memory out of 5000000
+ 51072 multiletter control sequences out of 15000+600000
  549016 words of font info for 123 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  67i,7n,91p,1724b,934s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (58 pages).
+Output written on main.pdf (70 pages).
