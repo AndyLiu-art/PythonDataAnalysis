@@ -1,0 +1,20 @@
+\hypertarget{ux7ed8ux5236ux591aux5217ux6570ux636eux7684ux997cux56fe}{%
+\subsubsection{各类绘图对缺失值的处理方式如下}\label{ux7ed8ux5236ux591aux5217ux6570ux636eux7684ux997cux56fe}}
+
+    \begin{longtable}[]{@{}ll@{}}
+\toprule()
+Plot Type & NaN Handling \\
+\midrule()
+\endhead
+Line & Leave gaps at NaNs \\
+Line & (stacked) Fill 0's \\
+Bar & Fill 0's \\
+Scatter & Drop NaNs \\
+Histogram & Drop NaNs (column-wise) \\
+Box & Drop NaNs (column-wise) \\
+Area & Fill 0's \\
+KDE & Drop NaNs (column-wise) \\
+Hexbin & Drop NaNs \\
+Pie & Fill 0's \\
+\bottomrule()
+\end{longtable}
