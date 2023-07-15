@@ -1,0 +1,77 @@
+    \hypertarget{ux81eaux5b9aux4e49ux9ad8ux4eaeux663eux793aux6570ux636e}{%
+\subsubsection{自定义高亮显示数据}\label{ux81eaux5b9aux4e49ux9ad8ux4eaeux663eux793aux6570ux636e}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 导入基础计算库}
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{c+c1}{\PYZsh{} 导入数据分析库}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\PY{c+c1}{\PYZsh{} 导入matplotlib包}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib} \PY{k}{as} \PY{n+nn}{mpl}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 设置随机数种子}
+\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 生成数据}
+\PY{n}{weather\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}
+    \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{5}\PY{p}{,}
+    \PY{n}{index}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{n}{start}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2021\PYZhy{}01\PYZhy{}01}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{periods}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,}
+    \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tokyo}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Beijing}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 自定义函数}
+\PY{k}{def} \PY{n+nf}{rain\PYZus{}condition}\PY{p}{(}\PY{n}{v}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n}{v} \PY{o}{\PYZlt{}} \PY{l+m+mf}{1.75}\PY{p}{:}
+        \PY{k}{return} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Dry}\PY{l+s+s2}{\PYZdq{}}
+    \PY{k}{elif} \PY{n}{v} \PY{o}{\PYZlt{}} \PY{l+m+mf}{2.75}\PY{p}{:}
+        \PY{k}{return} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Rain}\PY{l+s+s2}{\PYZdq{}}
+    \PY{k}{return} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Heavy Rain}\PY{l+s+s2}{\PYZdq{}}
+\PY{c+c1}{\PYZsh{} 高亮显示}
+\PY{k}{def} \PY{n+nf}{make\PYZus{}pretty}\PY{p}{(}\PY{n}{styler}\PY{p}{)}\PY{p}{:}
+    \PY{n}{styler}\PY{o}{.}\PY{n}{set\PYZus{}caption}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Weather Conditions}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} 设置数据表的标题}
+    \PY{n}{styler}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{rain\PYZus{}condition}\PY{p}{)} \PY{c+c1}{\PYZsh{} 设置数据格式，调用自定义函数}
+    \PY{n}{styler}\PY{o}{.}\PY{n}{format\PYZus{}index}\PY{p}{(}\PY{k}{lambda} \PY{n}{v}\PY{p}{:} \PY{n}{v}\PY{o}{.}\PY{n}{strftime}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{A}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} 修改行名}
+    \PY{c+c1}{\PYZsh{} 背景颜色}
+    \PY{n}{styler}\PY{o}{.}\PY{n}{background\PYZus{}gradient}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{vmin}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{vmax}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{YlGnBu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{k}{return} \PY{n}{styler}
+
+\PY{n}{weather\PYZus{}df}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+               Tokyo   Beijing
+2021-01-01  2.085110  3.601622
+2021-01-02  0.000572  1.511663
+2021-01-03  0.733779  0.461693
+2021-01-04  0.931301  1.727804
+2021-01-05  1.983837  2.694084
+2021-01-06  2.095973  3.426098
+2021-01-07  1.022261  4.390587
+2021-01-08  0.136938  3.352338
+2021-01-09  2.086524  2.793449
+2021-01-10  0.701935  0.990507
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 高亮显示，调用make\PYZus{}pretty函数}
+\PY{n}{weather\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2021\PYZhy{}01\PYZhy{}04}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2021\PYZhy{}01\PYZhy{}08}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{pipe}\PY{p}{(}\PY{n}{make\PYZus{}pretty}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<pandas.io.formats.style.Styler at 0x287e35be0e0>
+\end{Verbatim}
+\end{tcolorbox}

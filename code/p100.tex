@@ -1,0 +1,140 @@
+    \hypertarget{ux5bf9ux6700ux5927ux503cux548cux6700ux5c0fux503cux8fdbux884cux9ad8ux4eaeux663eux793aux5185ux7f6eux51fdux6570}{%
+\subsubsection{对最大值和最小值进行高亮显示（内置函数）}\label{ux5bf9ux6700ux5927ux503cux548cux6700ux5c0fux503cux8fdbux884cux9ad8ux4eaeux663eux793aux5185ux7f6eux51fdux6570}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 导入基础计算库}
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{c+c1}{\PYZsh{} 导入数据分析库}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\PY{c+c1}{\PYZsh{} 导入matplotlib包}
+\PY{k+kn}{import} \PY{n+nn}{matplotlib} \PY{k}{as} \PY{n+nn}{mpl}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 设置随机数种子}
+\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 生成数据}
+\PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{A}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{B}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{C}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{D}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\PY{n}{df}\PY{o}{.}\PY{n}{style}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<pandas.io.formats.style.Styler at 0x26e697b5ea0>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 最大值高亮显示}
+\PY{n}{df}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{highlight\PYZus{}max}\PY{p}{(}
+    \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{c+c1}{\PYZsh{} 行最大值}
+    \PY{n}{props}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{color:white; font\PYZhy{}weight:bold; background\PYZhy{}color:darkblue;}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<pandas.io.formats.style.Styler at 0x26e6bf3cd60>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 最大值高亮显示}
+\PY{n}{df}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{highlight\PYZus{}max}\PY{p}{(}
+    \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{c+c1}{\PYZsh{} 列最大值}
+    \PY{n}{props}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{color:white; font\PYZhy{}weight:bold; background\PYZhy{}color:darkblue;}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<pandas.io.formats.style.Styler at 0x26e6bf3d270>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 最大值高亮显示}
+\PY{n}{df}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{highlight\PYZus{}max}\PY{p}{(}
+    \PY{n}{axis}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{c+c1}{\PYZsh{} 整个dataframe最大值}
+    \PY{n}{props}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{color:white; font\PYZhy{}weight:bold; background\PYZhy{}color:darkblue;}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<pandas.io.formats.style.Styler at 0x26e6c79f910>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 最小值高亮显示}
+\PY{n}{df}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{highlight\PYZus{}min}\PY{p}{(}
+    \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{c+c1}{\PYZsh{} 行最小值}
+    \PY{n}{props}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{color:white; font\PYZhy{}weight:bold; background\PYZhy{}color:darkblue;}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<pandas.io.formats.style.Styler at 0x26e6c79f3a0>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 最小值高亮显示}
+\PY{n}{df}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{highlight\PYZus{}min}\PY{p}{(}
+    \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{c+c1}{\PYZsh{} 列最小值}
+    \PY{n}{props}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{color:white; font\PYZhy{}weight:bold; background\PYZhy{}color:darkblue;}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<pandas.io.formats.style.Styler at 0x26e6c79fc40>
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 最小值高亮显示}
+\PY{n}{df}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{highlight\PYZus{}min}\PY{p}{(}
+    \PY{n}{axis}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{c+c1}{\PYZsh{} 整个dataframe最小值}
+    \PY{n}{props}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{color:white; font\PYZhy{}weight:bold; background\PYZhy{}color:darkblue;}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+<pandas.io.formats.style.Styler at 0x26e6c79f6d0>
+\end{Verbatim}
+\end{tcolorbox}
