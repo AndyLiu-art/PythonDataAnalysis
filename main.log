@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2021.2.7)  14 JUL 2023 22:06
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2021.2.7)  16 JUL 2023 11:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1308,6 +1308,9 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 371.
 LaTeX Warning: Label `ux7ed8ux5236ux591aux5217ux6570ux636eux7684ux997cux56fe' m
 ultiply defined.
 
+
+LaTeX Warning: Label `ux5206ux7ec4ux6c42ux548c' multiply defined.
+
 )
 \openout1 = `main.aux'.
 
@@ -1646,12 +1649,21 @@ Overfull \vbox (2.0pt too high) has occurred while \output is active []
 (./code/p105.tex [107]) (./code/p106.tex) (./code/p107.tex [108])
 (./code/p108.tex [109]) (./code/p109.tex) (./code/p110.tex [110])
 (./code/p111.tex [111]) (./code/p112.tex [112]) (./code/p113.tex [113])
-(./code/p114.tex [114]) (./code/p20.tex
+(./code/p114.tex [114]) (./code/p115.tex [115]) (./code/p116.tex [116])
+(./code/p117.tex [117]) (./code/p118.tex [118]) (./code/p119.tex)
+(./code/p120.tex [119]) (./code/p121.tex [120]) (./code/p122.tex [121])
+(./code/p123.tex [122]) (./code/p124.tex [123]) (./code/p125.tex [124])
+(./code/p126.tex [125]) (./code/p127.tex [126]) (./code/p128.tex [127])
+(./code/p129.tex [128]) (./code/p130.tex [129]) (./code/p131.tex [130] [131])
+(./code/p132.tex [132]) (./code/p133.tex [133]) (./code/p134.tex [134])
+(./code/p135.tex [135]) (./code/p136.tex [136]) (./code/p137.tex [137])
+(./code/p138.tex [138]) (./code/p139.tex [139]) (./code/p140.tex [140])
+(./code/p20.tex
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 3.
 
-[115])) [116]
+[141])) [142]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 7.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 7.
  (./main.aux)
@@ -1664,8 +1676,8 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 50679EB63EBF89498190F575210684D1;38761
-(rerunfilecheck)             After:  14F41FB8DA01A90C28784BF6C21D0650;39437.
+(rerunfilecheck)             Before: 90F673010B1E884146F3CBE9BA671533;40349
+(rerunfilecheck)             After:  BA8A1BE9D548AF1BD79FD44DA68520B4;44060.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1674,12 +1686,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 35131 strings out of 479418
- 753845 string characters out of 5881066
- 1224978 words of memory out of 5000000
- 51602 multiletter control sequences out of 15000+600000
+ 35406 strings out of 479418
+ 759430 string characters out of 5881066
+ 1227019 words of memory out of 5000000
+ 51799 multiletter control sequences out of 15000+600000
  549016 words of font info for 123 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  67i,7n,91p,1725b,937s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (116 pages).
+Output written on main.pdf (142 pages).
