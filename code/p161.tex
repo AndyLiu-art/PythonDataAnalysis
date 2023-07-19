@@ -1,0 +1,225 @@
+    \hypertarget{ux751fux6210ux4e00ux4e2aux65f6ux95f4ux6233ux5e8fux5217date_range}{%
+\subsubsection{生成一个时间戳序列(date\_range)}\label{ux751fux6210ux4e00ux4e2aux65f6ux95f4ux6233ux5e8fux5217date_range}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{datetime}
+\PY{n}{start} \PY{o}{=} \PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2011}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{end} \PY{o}{=} \PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2012}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\PY{n}{index} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{n}{start}\PY{p}{,} \PY{n}{end}\PY{p}{)}
+\PY{n}{index}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+DatetimeIndex(['2011-01-01', '2011-01-02', '2011-01-03', '2011-01-04',
+               '2011-01-05', '2011-01-06', '2011-01-07', '2011-01-08',
+               '2011-01-09', '2011-01-10',
+               {\ldots}
+               '2011-12-23', '2011-12-24', '2011-12-25', '2011-12-26',
+               '2011-12-27', '2011-12-28', '2011-12-29', '2011-12-30',
+               '2011-12-31', '2012-01-01'],
+              dtype='datetime64[ns]', length=366, freq='D')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 工作日时间}
+\PY{n}{index} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{bdate\PYZus{}range}\PY{p}{(}\PY{n}{start}\PY{p}{,} \PY{n}{end}\PY{p}{)}
+\PY{n}{index}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+DatetimeIndex(['2011-01-03', '2011-01-04', '2011-01-05', '2011-01-06',
+               '2011-01-07', '2011-01-10', '2011-01-11', '2011-01-12',
+               '2011-01-13', '2011-01-14',
+               {\ldots}
+               '2011-12-19', '2011-12-20', '2011-12-21', '2011-12-22',
+               '2011-12-23', '2011-12-26', '2011-12-27', '2011-12-28',
+               '2011-12-29', '2011-12-30'],
+              dtype='datetime64[ns]', length=260, freq='B')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 月份为间隔}
+\PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{n}{start}\PY{p}{,} \PY{n}{periods}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{,} \PY{n}{freq}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+DatetimeIndex(['2011-01-31', '2011-02-28', '2011-03-31', '2011-04-30',
+               '2011-05-31', '2011-06-30', '2011-07-31', '2011-08-31',
+               '2011-09-30', '2011-10-31',
+               {\ldots}
+               '2093-07-31', '2093-08-31', '2093-09-30', '2093-10-31',
+               '2093-11-30', '2093-12-31', '2094-01-31', '2094-02-28',
+               '2094-03-31', '2094-04-30'],
+              dtype='datetime64[ns]', length=1000, freq='M')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 季节为间隔，工作日}
+\PY{n}{pd}\PY{o}{.}\PY{n}{bdate\PYZus{}range}\PY{p}{(}\PY{n}{start}\PY{p}{,} \PY{n}{periods}\PY{o}{=}\PY{l+m+mi}{250}\PY{p}{,} \PY{n}{freq}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{BQS}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+DatetimeIndex(['2011-01-03', '2011-04-01', '2011-07-01', '2011-10-03',
+               '2012-01-02', '2012-04-02', '2012-07-02', '2012-10-01',
+               '2013-01-01', '2013-04-01',
+               {\ldots}
+               '2071-01-01', '2071-04-01', '2071-07-01', '2071-10-01',
+               '2072-01-01', '2072-04-01', '2072-07-01', '2072-10-03',
+               '2073-01-02', '2073-04-03'],
+              dtype='datetime64[ns]', length=250, freq='BQS-JAN')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 月份间隔}
+\PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{n}{start}\PY{p}{,} \PY{n}{end}\PY{p}{,} \PY{n}{freq}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{BM}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+DatetimeIndex(['2011-01-31', '2011-02-28', '2011-03-31', '2011-04-29',
+               '2011-05-31', '2011-06-30', '2011-07-29', '2011-08-31',
+               '2011-09-30', '2011-10-31', '2011-11-30', '2011-12-30'],
+              dtype='datetime64[ns]', freq='BM')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 星期为间隔}
+\PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{n}{start}\PY{p}{,} \PY{n}{end}\PY{p}{,} \PY{n}{freq}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{W}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+DatetimeIndex(['2011-01-02', '2011-01-09', '2011-01-16', '2011-01-23',
+               '2011-01-30', '2011-02-06', '2011-02-13', '2011-02-20',
+               '2011-02-27', '2011-03-06', '2011-03-13', '2011-03-20',
+               '2011-03-27', '2011-04-03', '2011-04-10', '2011-04-17',
+               '2011-04-24', '2011-05-01', '2011-05-08', '2011-05-15',
+               '2011-05-22', '2011-05-29', '2011-06-05', '2011-06-12',
+               '2011-06-19', '2011-06-26', '2011-07-03', '2011-07-10',
+               '2011-07-17', '2011-07-24', '2011-07-31', '2011-08-07',
+               '2011-08-14', '2011-08-21', '2011-08-28', '2011-09-04',
+               '2011-09-11', '2011-09-18', '2011-09-25', '2011-10-02',
+               '2011-10-09', '2011-10-16', '2011-10-23', '2011-10-30',
+               '2011-11-06', '2011-11-13', '2011-11-20', '2011-11-27',
+               '2011-12-04', '2011-12-11', '2011-12-18', '2011-12-25',
+               '2012-01-01'],
+              dtype='datetime64[ns]', freq='W-SUN')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 指定序列的长度，从结尾日期开始}
+\PY{n}{pd}\PY{o}{.}\PY{n}{bdate\PYZus{}range}\PY{p}{(}\PY{n}{end}\PY{o}{=}\PY{n}{end}\PY{p}{,} \PY{n}{periods}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+DatetimeIndex(['2011-12-05', '2011-12-06', '2011-12-07', '2011-12-08',
+               '2011-12-09', '2011-12-12', '2011-12-13', '2011-12-14',
+               '2011-12-15', '2011-12-16', '2011-12-19', '2011-12-20',
+               '2011-12-21', '2011-12-22', '2011-12-23', '2011-12-26',
+               '2011-12-27', '2011-12-28', '2011-12-29', '2011-12-30'],
+              dtype='datetime64[ns]', freq='B')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 指定序列的长度，从开始日期开始}
+\PY{n}{pd}\PY{o}{.}\PY{n}{bdate\PYZus{}range}\PY{p}{(}\PY{n}{start}\PY{o}{=}\PY{n}{start}\PY{p}{,} \PY{n}{periods}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+DatetimeIndex(['2011-01-03', '2011-01-04', '2011-01-05', '2011-01-06',
+               '2011-01-07', '2011-01-10', '2011-01-11', '2011-01-12',
+               '2011-01-13', '2011-01-14', '2011-01-17', '2011-01-18',
+               '2011-01-19', '2011-01-20', '2011-01-21', '2011-01-24',
+               '2011-01-25', '2011-01-26', '2011-01-27', '2011-01-28'],
+              dtype='datetime64[ns]', freq='B')
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 字符串日期指定起始}
+\PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2018\PYZhy{}01\PYZhy{}01}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2018\PYZhy{}01\PYZhy{}05}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{periods}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+DatetimeIndex(['2018-01-01', '2018-01-02', '2018-01-03', '2018-01-04',
+               '2018-01-05'],
+              dtype='datetime64[ns]', freq=None)
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2018\PYZhy{}01\PYZhy{}01}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2018\PYZhy{}01\PYZhy{}05}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{periods}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+DatetimeIndex(['2018-01-01 00:00:00', '2018-01-01 10:40:00',
+               '2018-01-01 21:20:00', '2018-01-02 08:00:00',
+               '2018-01-02 18:40:00', '2018-01-03 05:20:00',
+               '2018-01-03 16:00:00', '2018-01-04 02:40:00',
+               '2018-01-04 13:20:00', '2018-01-05 00:00:00'],
+              dtype='datetime64[ns]', freq=None)
+\end{Verbatim}
+\end{tcolorbox}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2021.2.7)  16 JUL 2023 11:57
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2021.2.7)  19 JUL 2023 14:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1658,12 +1658,26 @@ Overfull \vbox (2.0pt too high) has occurred while \output is active []
 (./code/p132.tex [132]) (./code/p133.tex [133]) (./code/p134.tex [134])
 (./code/p135.tex [135]) (./code/p136.tex [136]) (./code/p137.tex [137])
 (./code/p138.tex [138]) (./code/p139.tex [139]) (./code/p140.tex [140])
+(./code/p153.tex [141]) (./code/p154.tex [142]) (./code/p155.tex)
+(./code/p156.tex [143]) (./code/p157.tex [144]) (./code/p158.tex)
+(./code/p159.tex [145]) (./code/p160.tex) (./code/p161.tex [146] [147] [148])
+(./code/p162.tex [149]) (./code/p163.tex [150]
+Overfull \vbox (1.0pt too high) has occurred while \output is active []
+
+ [151]
+Overfull \vbox (1.0pt too high) has occurred while \output is active []
+
+ [152])
 (./code/p20.tex
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 3.
 
-[141])) [142]
+[153] [154]) (./code/p141.tex) (./code/p142.tex [155] [156]) (./code/p143.tex
+[157] [158]) (./code/p144.tex [159]) (./code/p145.tex [160] [161])
+(./code/p146.tex [162] [163]) (./code/p147.tex) (./code/p148.tex [164] [165])
+(./code/p149.tex [166] [167]) (./code/p150.tex [168]) (./code/p151.tex [169]
+[170]) (./code/p152.tex [171])) [172]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 7.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 7.
  (./main.aux)
@@ -1676,8 +1690,8 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 90F673010B1E884146F3CBE9BA671533;40349
-(rerunfilecheck)             After:  BA8A1BE9D548AF1BD79FD44DA68520B4;44060.
+(rerunfilecheck)             Before: E63A363819908A0D4952078600EFBA24;49337
+(rerunfilecheck)             After:  F1337D10ED5610097970F44FB1AF808F;49657.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1686,12 +1700,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 35406 strings out of 479418
- 759430 string characters out of 5881066
- 1227019 words of memory out of 5000000
- 51799 multiletter control sequences out of 15000+600000
+ 35832 strings out of 479418
+ 769035 string characters out of 5881066
+ 1237331 words of memory out of 5000000
+ 52156 multiletter control sequences out of 15000+600000
  549016 words of font info for 123 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  67i,7n,91p,1725b,937s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (142 pages).
+Output written on main.pdf (172 pages).

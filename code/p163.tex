@@ -1,0 +1,246 @@
+    \hypertarget{ux83b7ux53d6ux65f6ux95f4ux7684ux5e74ux6708ux65e5ux65f6ux5206ux79d2}{%
+\subsubsection{获取时间的年月日时分秒}\label{ux83b7ux53d6ux65f6ux95f4ux7684ux5e74ux6708ux65e5ux65f6ux5206ux79d2}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{idx} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{n}{start}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2019\PYZhy{}12\PYZhy{}29 12:13:14}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{freq}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{s}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{periods}\PY{o}{=}\PY{l+m+mi}{4000000}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 转为Series对象}
+\PY{n}{idx} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{idx}\PY{p}{)}
+\PY{n}{idx}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+0         2019-12-29 12:13:14
+1         2019-12-29 12:13:15
+2         2019-12-29 12:13:16
+3         2019-12-29 12:13:17
+4         2019-12-29 12:13:18
+                  {\ldots}
+3999995   2020-02-13 19:19:49
+3999996   2020-02-13 19:19:50
+3999997   2020-02-13 19:19:51
+3999998   2020-02-13 19:19:52
+3999999   2020-02-13 19:19:53
+Length: 4000000, dtype: datetime64[ns]
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 年份}
+\PY{n}{idx}\PY{o}{.}\PY{n}{dt}\PY{o}{.}\PY{n}{year}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+0          2019
+1          2019
+2          2019
+3          2019
+4          2019
+           {\ldots}
+3999995    2020
+3999996    2020
+3999997    2020
+3999998    2020
+3999999    2020
+Length: 4000000, dtype: int64
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 月份}
+\PY{n}{idx}\PY{o}{.}\PY{n}{dt}\PY{o}{.}\PY{n}{month}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+0          12
+1          12
+2          12
+3          12
+4          12
+           ..
+3999995     2
+3999996     2
+3999997     2
+3999998     2
+3999999     2
+Length: 4000000, dtype: int64
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 日子}
+\PY{n}{idx}\PY{o}{.}\PY{n}{dt}\PY{o}{.}\PY{n}{day}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+0          29
+1          29
+2          29
+3          29
+4          29
+           ..
+3999995    13
+3999996    13
+3999997    13
+3999998    13
+3999999    13
+Length: 4000000, dtype: int64
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 小时}
+\PY{n}{idx}\PY{o}{.}\PY{n}{dt}\PY{o}{.}\PY{n}{hour}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+0          12
+1          12
+2          12
+3          12
+4          12
+           ..
+3999995    19
+3999996    19
+3999997    19
+3999998    19
+3999999    19
+Length: 4000000, dtype: int64
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 分钟}
+\PY{n}{idx}\PY{o}{.}\PY{n}{dt}\PY{o}{.}\PY{n}{minute}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+0          13
+1          13
+2          13
+3          13
+4          13
+           ..
+3999995    19
+3999996    19
+3999997    19
+3999998    19
+3999999    19
+Length: 4000000, dtype: int64
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 秒}
+\PY{n}{idx}\PY{o}{.}\PY{n}{dt}\PY{o}{.}\PY{n}{second}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+0          14
+1          15
+2          16
+3          17
+4          18
+           ..
+3999995    49
+3999996    50
+3999997    51
+3999998    52
+3999999    53
+Length: 4000000, dtype: int64
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 日期}
+\PY{n}{idx}\PY{o}{.}\PY{n}{dt}\PY{o}{.}\PY{n}{date}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+0          2019-12-29
+1          2019-12-29
+2          2019-12-29
+3          2019-12-29
+4          2019-12-29
+              {\ldots}
+3999995    2020-02-13
+3999996    2020-02-13
+3999997    2020-02-13
+3999998    2020-02-13
+3999999    2020-02-13
+Length: 4000000, dtype: object
+\end{Verbatim}
+\end{tcolorbox}
+        
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} 时间}
+\PY{n}{idx}\PY{o}{.}\PY{n}{dt}\PY{o}{.}\PY{n}{time}
+\end{Verbatim}
+\end{tcolorbox}
+
+            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
+\prompt{Out}{outcolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+0          12:13:14
+1          12:13:15
+2          12:13:16
+3          12:13:17
+4          12:13:18
+             {\ldots}
+3999995    19:19:49
+3999996    19:19:50
+3999997    19:19:51
+3999998    19:19:52
+3999999    19:19:53
+Length: 4000000, dtype: object
+\end{Verbatim}
+\end{tcolorbox}
